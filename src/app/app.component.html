@@ -1,0 +1,142 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <img src="../assets/images/logo.png" alt="Logo">
+    </div>
+    <nav class="menu">
+      <ul>
+        <li class="menu-item">
+          <a href="#">Главная</a>
+        </li>
+        <li class="menu-item">
+          <a href="#students">Студенты</a>
+        </li>
+        <li class="menu-item">
+          <a href="#subjects">Предметы</a>
+        </li>
+        <li class="menu-item">
+          <a href="#graphs">Расписание занятий</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section class="main" [ngStyle]="bgPos">
+  <div class="container">
+    <div class="main-info">
+      <h1 class="main-title">Выпускная квалификационная работа</h1>
+      <div class="main-text">
+        В нашей группе находится множество студентов, поэтому для упрощения коммуникации и
+        налаживания работы в группе я выбрал данную тему.
+        Макет сайта.
+      </div>
+      <div class="main-action">
+        <button class="button" id="main-action" (click)="goScroll(subjects)">Предметы</button>
+        <button class="button" id="main-action" (click)="goScroll(students)">Студенты</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="students" id="students" #students>
+  <div class="container">
+    <h2 class="sub-title ">Список студентов</h2>
+    <div class="student-cards">
+      <div class="card" style="width:18rem;" *ngFor="let student of studData">
+        <!--<img src="" class="card-img-top" alt="...">-->
+        <div class="card-body">
+          <h5 class="card-title">{{student.secondName}} {{student.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted ">Номер группы: {{student.groupNum}}</h6>
+          <p class="card-text">Возраст: {{student.age}}</p>
+          <a class="btn btn-info btn-sm " href="https://vk.com/{{student.vk}}" target="_blank" role="button">Контакты</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section >
+<section class="subject" id="subjects" #subjects>
+  <div class="container">
+    <h2 class="sub-title ">Список предметов</h2>
+    <div class="subject-cards">
+      <div class="card" style="width:18rem;" *ngFor="let subject of subjData">
+        <div class="card-body">
+          <h5 class="card-title">{{subject.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted ">Преподаватель: {{subject.teacher}}</h6>
+          <p class="card-text">Тип сдачи: {{subject.type}}</p>
+          <a class="btn btn-info btn-sm " (click)="goScroll(graphs)" role="button">Занять очередь</a>
+        </div>
+      </div>
+    </div>
+	</div>
+</section>
+<section class="graph" id="graphs" #graphs>
+	<div class="container">
+		<h2 class="sub-title ">Расписание занятий</h2>
+		<table class="iksweb">
+			<tbody>
+				<tr>
+					<td></td>
+					<td colspan="2">Группа 940</td>
+				</tr>
+				<tr>
+					<td class="dayOfWeek" rowspan="10">Понедельник</td>
+					<td class="time" rowspan="2">11:40-13:15</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="time" rowspan="2">13:35-15:10</td>
+					<td>Лек. УПРАВЛЕНИЕ КАЧЕСТВОМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ </td>
+				</tr>
+				<tr>
+					<td>Лаб.  УПРАВЛЕНИЕ КАЧЕСТВОМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ </td>
+				</tr>
+				<tr>
+					<td class="time" rowspan="2">15:20-16:55</td>
+					<td>Лек. МАТЕМАТИЧЕСКИЕ  МЕТОДЫ В КОМПЬЮТЕРНЫХ НАУКАХ</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="time" rowspan="2">17:05-18:40</td>
+					<td>Упр.  МАТЕМАТИЧЕСКИЕ  МЕТОДЫ В КОМПЬЮТЕРНЫХ НАУКАХ</td>
+				</tr>
+				<tr>
+					<td><a href="#student">Упр.  УПРАВЛЕНИЕ КАЧЕСТВОМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ</a></td>
+				</tr>
+				<tr>
+					<td rowspan="2">18:50-20:15</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<section class="student" id="student" #student>
+  <div class="container">
+    <h2 class="sub-title">Бронирование места</h2>
+    <div class="student-text text-muted">
+      Заполните данные для того, чтобы я смог вас расположить в очереди на предмет
+    </div>
+    <form action="" class="student-form" [formGroup]="studentForm">
+      <input type="text" class="student-input" id="name" placeholder="Ваше имя" formControlName="name">
+      <input type="text" class="student-input" id="phone" placeholder="Ваша фамилия" formControlName="surname">
+      <input type="text" class="student-input" id="group" placeholder="Номер вашей группы" value="Группа 940" formControlName="groupNum">
+      <input type="text" class="student-input" id="subject" placeholder="Выбранный предмет" formControlName="subject">
+      <button class="button" type="button" id="student-action" (click)="onSubmit()" [disabled]="!studentForm.valid">Занять очередь</button>
+    </form>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="logo">
+      <img src="../assets/images/logo.png" alt="Logo">
+    </div>
+    <div class="rights">Все права защищены</div>
+  </div>
+</footer>
